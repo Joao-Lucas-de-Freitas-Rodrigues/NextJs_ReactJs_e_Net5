@@ -1,0 +1,16 @@
+.home button{
+    border-radius:8px;
+    padding: 6px 8px;
+    margin-right: 3px;
+}
+
+.titulo{
+    display: flex;
+    justify-content: space-between;
+}
+
+.titulo button{
+    border-radius:6px;
+    padding: 3px 5px;
+}
+
