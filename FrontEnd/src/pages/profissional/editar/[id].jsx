@@ -13,7 +13,7 @@ const validationPost = yup.object().shape({
     idade: yup.number().integer().required("Idade é um campo obrigatório").typeError('Idade é um campo obrigatório'),
     telefone: yup.string().required("Telefone é um campo obrigatório"),
     profissao: yup.string().required("Profissao é um campo obrigatório"),
-    salario: yup.number().required("Salario  é um campo obrigatório").typeError('Idade é um campo obrigatório')
+    salario: yup.number().required().typeError('Salário é um campo obrigatório e numérico')
 })
 
 const errorColor = {

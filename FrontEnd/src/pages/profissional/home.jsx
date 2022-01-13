@@ -3,15 +3,12 @@ import api from '../../api/config';
 import { useEffect, useState } from "react";
 import { getProfissional } from '../../services/profissional/profissionalService'
 import Layout from '../../components/Layout'
-import { Table, Button, Modal, ModalHeader, ModalFooter, ModalBody, Pagination, PaginationItem, PaginationLink } from "reactstrap";
+import { Table, Button } from "reactstrap";
 import { HiOutlinePencilAlt, HiOutlineTrash, HiOutlineX, HiPlus } from "react-icons/hi";
 import Styles from '../../styles/home.module.css';
 import Router from 'next/router';
 
 const Profissional = () => {
-
-    const [modal, setModal] = useState(false);
-    const toggle = () => setModal(!modal);
 
     const [profissionais, setProfissionais] = useState([]);
 
@@ -25,7 +22,7 @@ const Profissional = () => {
         }
     }, []);
 
-    async function Excluir(id) {
+    async function Excluir(id) { 
         await api.delete(`/Profissional/${id}`)
         setProfissionais(await getProfissional())
     }
@@ -84,41 +81,15 @@ const Profissional = () => {
                                     </Button>
                                     <Button
                                         color="danger"
-                                        onClick={toggle}
+                                        onClick={() => { Excluir(item.id) }}
                                     >
                                         <HiOutlineTrash size={22} />
                                     </Button>
-                                    <Modal isOpen={modal} animation="false">
-                                        <ModalHeader
-                                            close={<button onClick={() => setModal(false)}><HiOutlineX /></button>}
-                                        >
-                                            Excluir
-                                        </ModalHeader>
-                                        <ModalBody>
-                                            Deseja excluir este registro ?
-                                        </ModalBody>
-                                        <ModalFooter>
-                                            <Button
-                                                color="success"
-                                                onClick={() => { Excluir(item.id) }}
-                                            >
-                                                Sim
-                                            </Button>
-                                            <Button onClick={() => setModal(false)}
-                                                color="danger"
-                                            >
-                                                Não
-                                            </Button>
-                                        </ModalFooter>
-                                    </Modal>
                                 </div>
                             </td>
                         </tr>
                     ))}
                 </tbody>
-                <tfoot>
-                    
-                </tfoot>
             </Table>
         </Layout >
     )
